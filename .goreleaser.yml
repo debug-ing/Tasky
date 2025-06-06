@@ -7,13 +7,38 @@ builds:
       - linux
       - darwin
       - windows
+    binary: "tasky_{{.Version}}_{{ .Os }}_{{ .Arch }}"
+    no_unique_dist_dir: true
     goarch:
       - amd64
       - arm64
+    ldflags:
+      - -s -w
+archives:
+  - id: binaries
+    formats: [ 'binary' ]
+    files:
+      - LICENSE
+      - README.md
+    
+source:
+  enabled: true
+  format: zip
+
+nfpms:
+  - id: default
+    package_name: tasky
+    formats:
+      - deb
+      - rpm
+    maintainer: "Mahdi Mohammadi <m.m.mohamadi1997@gmail.com>"
+    description: "A simple task manager CLI"
+    license: MIT
+    homepage: "https://github.com/shahriaarrr/Tasky"
+    vendor: Tasky Inc.
 
 release:
   mode: keep-existing
-  
   github:
     owner: shahriaarrr
     name: Tasky
